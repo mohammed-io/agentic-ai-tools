@@ -38,7 +38,63 @@ This skill activates AUTOMATICALLY when the user requests:
 
 ---
 
-## Step 0: Initialize Work Directory (If Needed)
+## Step 0: Verify Configuration (MANDATORY - First Time Only)
+
+**Before checking for active work, ensure the project is configured for work tracking:**
+
+1. **Check if AGENTS.md or CLAUDE.md exists:**
+   ```bash
+   ls AGENTS.md CLAUDE.md 2>/dev/null
+   ```
+
+2. **Check if work tracking instructions are already present:**
+   ```bash
+   grep -l "WORK TRACKING" AGENTS.md CLAUDE.md 2>/dev/null
+   ```
+
+3. **If NOT found, ask the user:**
+   ```
+   ⚠️ Work tracking is not configured in this project.
+
+   The work tracking system requires instructions in AGENTS.md or CLAUDE.md.
+
+   Which file would you like to use?
+   1. AGENTS.md (create new)
+   2. CLAUDE.md (create new)
+   3. Skip (work tracking may not function correctly)
+
+   Respond with 1, 2, or 3.
+   ```
+
+4. **If user chooses 1 or 2, add these instructions:**
+
+   ```markdown
+   ## Work Tracking System
+
+   **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
+
+   **⚠️ BEFORE STARTING ANY WORK, YOU MUST:**
+   1. Run: `ls agent-work/*.md` to check for active work files
+   2. If no active work exists, invoke: `Skill(work-tracking)`
+   3. Follow the skill's procedures to create a work file
+   4. Only proceed with coding AFTER work file is created
+
+   **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
+   ```
+
+5. **Confirm with user:**
+   ```
+   ✓ Added work tracking system instructions to AGENTS.md (or CLAUDE.md)
+   ```
+
+**Why this matters:**
+- Without these instructions, Claude won't know to use work tracking
+- The instructions act as a persistent reminder across sessions
+- AGENTS.md/CLAUDE.md are automatically loaded by Claude Code
+
+---
+
+## Step 2: Initialize Work Directory (If Needed)
 
 **Before checking for active work, ensure agent-work directory exists:**
 
@@ -58,7 +114,7 @@ fi
 
 ---
 
-## Step 1: Check for Active Work
+## Step 3: Check for Active Work
 
 **ALWAYS do this first before creating new work.**
 
@@ -74,11 +130,11 @@ If there's an active work file:
   3. Create new work file"
 - Wait for user response before proceeding
 
-If no active work file, proceed to Step 2.
+If no active work file, proceed to Step 4.
 
 ---
 
-## Step 2: Create Work File (MANDATORY)
+## Step 4: Create Work File (MANDATORY)
 
 **You MUST run this script BEFORE writing ANY code.**
 
@@ -108,7 +164,7 @@ Created work file: agent-work/20251230164521_improve_pdf_generation.md
 
 ---
 
-## Step 3: Populate Work File
+## Step 5: Populate Work File
 
 **Immediately after creation, populate the work file with:**
 
@@ -150,7 +206,7 @@ Current PDF generation doesn't preserve text selectable layers, making it hard f
 
 ---
 
-## Step 4: Implement Work (Update Todos Progressively)
+## Step 6: Implement Work (Update Todos Progressively)
 
 **⚠️ CRITICAL: Update the work file after EACH todo, not after all todos.**
 
@@ -186,7 +242,7 @@ New: - [x] Update PDF generator to verify text layer
 
 ---
 
-## Step 5: Complete Work
+## Step 7: Complete Work
 
 **When ALL todos are checked as [x], complete the work:**
 
@@ -220,7 +276,12 @@ Completed and moved: agent-work/completed/20251230164521_improve_pdf_generation.
 
 ## Enforcement Checklist
 
-Before writing ANY code, verify:
+**First time in project:**
+- [ ] Verified AGENTS.md or CLAUDE.md exists
+- [ ] Added work tracking system instructions to AGENTS.md or CLAUDE.md
+- [ ] Initialized agent-work directory from scaffold
+
+**Before writing ANY code, verify:**
 - [ ] Checked for active work files
 - [ ] Created work file using `work-create.sh`
 - [ ] Populated Context, Value Proposition, Alternatives, Todos
@@ -316,10 +377,12 @@ New: - [x] Implement watermark positioning
 ## Summary
 
 **MANDATORY SEQUENCE:**
-1. Check for active work: `ls agent-work/*.md`
-2. Create work file: `./agent-work/bin/work-create.sh <task_name>`
-3. Populate work file with context, todos, etc.
-4. Implement EACH todo + update work file immediately after EACH
-5. Complete work: `./agent-work/bin/work-complete.sh <name>`
+1. **First time only**: Verify AGENTS.md/CLAUDE.md has work tracking instructions (Step 0)
+2. **First time only**: Initialize agent-work directory from scaffold (Step 1)
+3. Check for active work: `ls agent-work/*.md` (Step 2)
+4. Create work file: `./agent-work/bin/work-create.sh <task_name>` (Step 3)
+5. Populate work file with context, todos, etc. (Step 4)
+6. Implement EACH todo + update work file immediately after EACH (Step 5)
+7. Complete work: `./agent-work/bin/work-complete.sh <name>` (Step 6)
 
 **NO CODE WITHOUT A WORK FILE. NO EXCEPTIONS.**
