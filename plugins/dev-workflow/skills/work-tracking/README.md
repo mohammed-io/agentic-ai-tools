@@ -31,7 +31,7 @@ Claude will:
 **Copy and paste this prompt into Claude Code or Cursor:**
 
 ```text
-Help me install the work-tracking skill from: https://github.com/yourusername/repo/tree/main/.claude/skills/work-tracking
+Help me install the work-tracking skill from: https://github.com/mohammed-io/agentic-ai-tools/tree/main/plugins/dev-workflow/skills/work-tracking
 
 1. Create .claude/skills/work-tracking/ directory
 2. Copy SKILL.md and scaffold/ folder
