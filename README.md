@@ -17,7 +17,6 @@ Focused plugins with progressive disclosure—skills load knowledge only when ac
 ### Step 2: Install Plugins
 
 ```bash
-# Install dev workflow with work tracking
 /plugin install dev-workflow
 ```
 
