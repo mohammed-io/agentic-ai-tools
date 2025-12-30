@@ -35,6 +35,8 @@ Help me install the work-tracking skill from: https://github.com/mohammed-io/age
 
 First, use the folder structure in the README.md to fetch the required files.
 
+Important: Make sure the casing of the file name is preserved (i.e., SKILL.md should be SKILL.md)
+
 Then, add the following to AGENTS.md or CLAUDE.md:
 
 ---
