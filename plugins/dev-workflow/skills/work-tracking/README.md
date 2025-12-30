@@ -39,9 +39,8 @@ Use the folder structure to fetch these files:
 3. Add the Work Tracking System section below to AGENTS.md or CLAUDE.md
 4. Initialize agent-work/ directory from the scaffold structure
 
-Add this to AGENTS.md or CLAUDE.md:
+Add the following to AGENTS.md or CLAUDE.md:
 
-```markdown
 ## Work Tracking System
 
 **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
@@ -53,7 +52,6 @@ Add this to AGENTS.md or CLAUDE.md:
 4. Only proceed with coding AFTER work file is created
 
 **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
-```
 ```
 
 ---
