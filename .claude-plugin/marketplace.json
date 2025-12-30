@@ -1,25 +1,35 @@
 {
-  "marketplace": {
-    "id": "mohammed-io/agentic-ai-tools",
-    "name": "Agentic AI Tools",
-    "description": "Claude Code skills and workflow automation tools for AI-assisted development",
-    "version": "1.0.0",
-    "author": "Mohammed A. I",
-    "repository": "https://github.com/mohammed-io/agentic-ai-tools"
+  "name": "agentic-ai-tools",
+  "owner": {
+    "name": "Mohammed A. I",
+    "url": "https://github.com/mohammed-io"
+  },
+  "metadata": {
+    "description": "Claude Code plugins and skills for AI-assisted development workflow automation",
+    "version": "1.0.0"
   },
   "plugins": [
     {
-      "id": "dev-workflow",
-      "name": "Dev Workflow",
+      "name": "dev-workflow",
+      "source": "./plugins/dev-workflow",
       "description": "Development workflow skills including work tracking and task management",
       "version": "1.0.0",
+      "author": {
+        "name": "Mohammed A. I",
+        "url": "https://github.com/mohammed-io"
+      },
+      "homepage": "https://github.com/mohammed-io/agentic-ai-tools",
+      "repository": "https://github.com/mohammed-io/agentic-ai-tools",
+      "license": "MIT",
+      "keywords": [
+        "workflow",
+        "work-tracking",
+        "task-management"
+      ],
+      "category": "workflows",
+      "strict": false,
       "skills": [
-        {
-          "id": "work-tracking",
-          "name": "Work Tracking",
-          "description": "Enforces mandatory work tracking before any code changes with progressive todo updates and crash recovery",
-          "path": "plugins/dev-workflow/skills/work-tracking/SKILL.md"
-        }
+        "./skills/work-tracking"
       ]
     }
   ]
