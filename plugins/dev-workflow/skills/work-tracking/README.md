@@ -33,13 +33,9 @@ Claude will:
 ```text
 Help me install the work-tracking skill from: https://github.com/mohammed-io/agentic-ai-tools/tree/main/plugins/dev-workflow/skills/work-tracking
 
-Use the folder structure to fetch these files:
-1. Fetch SKILL.md and place it in .claude/skills/work-tracking/
-2. Fetch the scaffold/ folder contents (bin/work-create.sh, bin/work-complete.sh)
-3. Add the Work Tracking System section below to AGENTS.md or CLAUDE.md
-4. Initialize agent-work/ directory from the scaffold structure
+First, use the folder structure in the README.md to fetch the required files.
 
-Add the following to AGENTS.md or CLAUDE.md:
+Then, add the following to AGENTS.md or CLAUDE.md:
 
 ## Work Tracking System
 
