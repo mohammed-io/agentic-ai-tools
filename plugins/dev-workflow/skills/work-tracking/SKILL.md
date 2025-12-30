@@ -191,13 +191,12 @@ New: - [x] Update PDF generator to verify text layer
 **When ALL todos are checked as [x], complete the work:**
 
 ```bash
-./agent-work/bin/work-complete.sh <name_or_timestamp>
+./agent-work/bin/work-complete.sh <name>
 ```
 
-### Examples (all work):
+### Examples:
 ```bash
 ./agent-work/bin/work-complete.sh improve_pdf_generation
-./agent-work/bin/work-complete.sh 20251230164521
 ./agent-work/bin/work-complete.sh 20251230164521_improve_pdf_generation
 ```
 
