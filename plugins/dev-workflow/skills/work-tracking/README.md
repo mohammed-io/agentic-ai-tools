@@ -37,6 +37,8 @@ First, use the folder structure in the README.md to fetch the required files.
 
 Then, add the following to AGENTS.md or CLAUDE.md:
 
+---
+
 ## Work Tracking System
 
 **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
@@ -48,6 +50,8 @@ Then, add the following to AGENTS.md or CLAUDE.md:
 4. Only proceed with coding AFTER work file is created
 
 **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
+
+---
 ```
 
 ---
