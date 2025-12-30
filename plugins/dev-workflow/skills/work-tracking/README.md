@@ -44,10 +44,9 @@ Then, add the following to AGENTS.md or CLAUDE.md:
 **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
 
 **⚠️ BEFORE STARTING ANY WORK, YOU MUST:**
-1. Run: `ls agent-work/*.md` to check for active work files
-2. If no active work exists, invoke: `Skill(work-tracking)`
-3. Follow the skill's procedures to create a work file
-4. Only proceed with coding AFTER work file is created
+1. Invoke: `Skill(work-tracking)`
+2. Follow the skill's procedures to create a work file
+3. Only proceed with coding AFTER work file is created
 
 **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
 

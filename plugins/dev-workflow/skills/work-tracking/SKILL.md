@@ -69,17 +69,20 @@ This skill activates AUTOMATICALLY when the user requests:
 4. **If user chooses 1 or 2, add these instructions:**
 
    ```markdown
+   ---
+
    ## Work Tracking System
 
    **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
 
    **⚠️ BEFORE STARTING ANY WORK, YOU MUST:**
-   1. Run: `ls agent-work/*.md` to check for active work files
-   2. If no active work exists, invoke: `Skill(work-tracking)`
-   3. Follow the skill's procedures to create a work file
-   4. Only proceed with coding AFTER work file is created
+   1. Invoke: `Skill(work-tracking)`
+   2. Follow the skill's procedures to create a work file
+   3. Only proceed with coding AFTER work file is created
 
    **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
+
+   ---
    ```
 
 5. **Confirm with user:**
