@@ -58,9 +58,9 @@ This skill activates AUTOMATICALLY when the user requests:
 
    The work tracking system requires instructions in AGENTS.md or CLAUDE.md.
 
-   Which file would you like to use?
-   1. AGENTS.md (create new)
-   2. CLAUDE.md (create new)
+   If cannot infer it, ask the user which file would you like to use?
+   1. AGENTS.md
+   2. CLAUDE.md
    3. Skip (work tracking may not function correctly)
 
    Respond with 1, 2, or 3.
