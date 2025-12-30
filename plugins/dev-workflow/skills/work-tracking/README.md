@@ -33,25 +33,13 @@ Claude will:
 ```text
 Help me install the work-tracking skill from: https://github.com/mohammed-io/agentic-ai-tools/tree/main/plugins/dev-workflow/skills/work-tracking
 
-1. Create .claude/skills/work-tracking/ directory
-2. Copy SKILL.md and scaffold/ folder
-3. Add the Work Tracking System section to AGENTS.md or CLAUDE.md
-4. Set up the agent-work directory structure
-```
+Use the folder structure to fetch these files:
+1. Fetch SKILL.md and place it in .claude/skills/work-tracking/
+2. Fetch the scaffold/ folder contents (bin/work-create.sh, bin/work-complete.sh)
+3. Add the Work Tracking System section below to AGENTS.md or CLAUDE.md
+4. Initialize agent-work/ directory from the scaffold structure
 
-Or install manually below:
-
-## Installation
-
-1. Copy to your project's `.claude/skills/` directory:
-
-```bash
-mkdir -p .claude/skills/work-tracking
-cp SKILL.md .claude/skills/work-tracking/
-cp -r scaffold .claude/skills/work-tracking/
-```
-
-2. **IMPORTANT:** Add this to your `AGENTS.md` or `CLAUDE.md` file:
+Add this to AGENTS.md or CLAUDE.md:
 
 ```markdown
 ## Work Tracking System
@@ -66,6 +54,23 @@ cp -r scaffold .claude/skills/work-tracking/
 
 **NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
 ```
+```
+
+---
+
+**Or install manually below:**
+
+## Installation
+
+1. Copy to your project's `.claude/skills/` directory:
+
+```bash
+mkdir -p .claude/skills/work-tracking
+cp SKILL.md .claude/skills/work-tracking/
+cp -r scaffold .claude/skills/work-tracking/
+```
+
+2. Add the Work Tracking System section (shown in Quick Start above) to your `AGENTS.md` or `CLAUDE.md` file.
 
 ## How It Works
 
@@ -87,6 +92,23 @@ The key insight: update after **each** todo, not all at once. This means if the 
 When all todos are checked, the work file is automatically moved to `agent-work/completed/` with a completion timestamp.
 
 ## Structure
+
+### Plugin Structure
+
+```
+work-tracking/
+├── README.md             # This file - documentation
+├── SKILL.md              # Claude skill definition
+└── scaffold/             # Template structure to copy
+    ├── bin/
+    │   ├── work-create.sh    # Creates new work files
+    │   └── work-complete.sh  # Completes and archives
+    └── completed/            # Archive for finished work
+```
+
+### Work Directory Structure
+
+After initialization, the `agent-work/` directory is created in your project:
 
 ```
 agent-work/
