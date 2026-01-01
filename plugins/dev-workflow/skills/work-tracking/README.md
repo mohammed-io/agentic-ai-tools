@@ -46,7 +46,7 @@ Then, add the following to AGENTS.md or CLAUDE.md:
 **⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
 
 **⚠️ BEFORE STARTING ANY WORK, YOU MUST:**
-1. Invoke: `Skill(work-tracking)`
+1. Invoke: `Skill(dev-workflow:work-tracking)`
 2. Follow the skill's procedures to create a work file
 3. Only proceed with coding AFTER work file is created
 
