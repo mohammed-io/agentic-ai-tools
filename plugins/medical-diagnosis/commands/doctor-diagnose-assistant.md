@@ -241,11 +241,18 @@ When consulting specialists, read the appropriate agent file from `.claude/agent
 - endocrinology.md - Diabetes, thyroid, adrenal
 - infectious-disease.md - Sepsis, infections
 - psychiatry.md - Mental health, substance use
+- clinical-psychology.md - Psychological assessment, therapy
 - surgery.md - Acute abdomen, trauma
+- critical-care.md - ICU management, shock, ventilation
 - pediatrics.md - All patients <18 years
 - obgyn.md - Pregnancy, gynecologic
 - emergency-medicine.md - Resuscitation, toxicology
 - pharmacology.md - Drug interactions, dosing
+- dermatology.md - Skin conditions, rashes
+- geriatrics.md - Elderly care, polypharmacy
+- hematology-oncology.md - Blood disorders, cancer
+- rheumatology.md - Autoimmune, joint diseases
+- urology.md - Kidney stones, prostate, urinary
 
 **Each specialist agent has their own mandatory questions. Consult the appropriate agent file.**
 
