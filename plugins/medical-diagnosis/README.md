@@ -4,16 +4,15 @@
 
 ## CRITICAL MEDICAL DISCLAIMER
 
-**THIS PLUGIN IS NOT A REPLACEMENT FOR PROFESSIONAL MEDICAL DIAGNOSIS OR TREATMENT**
+**THIS PLUGIN IS A CLINICAL DECISION SUPPORT TOOL FOR QUALIFIED HEALTHCARE PROFESSIONALS ONLY**
 
-This tool is designed to provide **informational support only** and should never be used to make medical decisions for yourself or others. The following points are absolutely critical:
+This tool is designed to **supplement (not replace)** clinical judgment and should only be used by qualified healthcare professionals. The following points are absolutely critical:
 
-- **THIS IS NOT A DOCTOR:** This AI system cannot examine patients, perform physical examinations, order diagnostic tests, or provide medical treatment
-- **NOT FOR EMERGENCIES:** If you or someone else is experiencing a medical emergency, **call emergency services immediately** (911 in the US)
-- **NO REPLACEMENT FOR SPECIALISTS:** This tool is meant to help you **understand symptoms better** before consulting a healthcare professional, NOT to replace a qualified medical specialist
-- **LIMITATIONS:** AI systems make errors and can provide incomplete or incorrect information. Medical diagnosis requires professional judgment, clinical experience, and sometimes additional testing that cannot be performed here
-- **AGE-APPROPRIATE CARE:** For children (under 18 years old), always consult a pediatrician or pediatric specialist. This system is not a substitute for specialized pediatric care
-- **NO TREATMENT PRESCRIPTIONS:** This tool does not provide medical treatment or prescribe medications. All treatment decisions must be made by licensed healthcare professionals
+- **FOR HEALTHCARE PROFESSIONALS ONLY:** This tool is intended for use by physicians, nurse practitioners, and other qualified medical professionals as a decision support aid
+- **SUPPLEMENTS CLINICAL JUDGMENT:** This AI system assists in organizing diagnostic reasoning but **never replaces** your clinical expertise, physical examination, or professional judgment
+- **NOT FOR EMERGENCIES:** This tool is not designed for emergency situations. Emergency care requires immediate clinical assessment and intervention
+- **LIMITATIONS:** AI systems make errors and can provide incomplete or incorrect information. All AI-generated suggestions must be **verified through clinical practice**
+- **NO TREATMENT PRESCRIPTIONS:** This tool does not provide treatment recommendations or prescribe medications. All treatment decisions remain the sole responsibility of the treating clinician
 
 ## LIABILITY DISCLAIMER
 
@@ -21,27 +20,29 @@ This tool is designed to provide **informational support only** and should never
 
 The author, developers, and contributors of this plugin assume **NO LIABILITY** of any kind, including but not limited to:
 
-- Any damages, injuries, or harm resulting from the use of this tool
+- Any patient harm or adverse outcomes resulting from clinical use of this tool
 - Medical decisions made based on information provided by this plugin
-- Delay in seeking appropriate medical care due to reliance on this system
 - Inaccurate, incomplete, or misleading information provided
-- Any consequences of using this information for any purpose
+- Any consequences of using this information in clinical practice
+- Malpractice claims or legal actions resulting from use of this tool
 
 **BY USING THIS PLUGIN, YOU AGREE THAT:**
 
-- You will consult a qualified healthcare professional for any medical concerns
-- This tool is used for **informational and educational purposes only**
-- You will not use this system to diagnose or treat yourself or others
-- The author is not responsible for any outcomes resulting from your use of this plugin
+- You are a **qualified healthcare professional** using this as a decision support aid only
+- This tool **supplements but never replaces** your clinical judgment and expertise
+- You remain **solely responsible** for all medical decisions and patient care
+- The author is not responsible for any clinical outcomes resulting from use of this plugin
+- AI limitations are understood and all AI-generated information is **verified through clinical practice**
 
 ## Purpose of This Plugin
 
 This plugin is designed to:
 
-- Help friends and family members **prepare information** before seeing a healthcare provider
-- Assist in **structuring questions** you might want to ask your doctor
-- Provide **general medical information** about various specialties and conditions
-- Help organize symptoms and medical history in preparation for a medical consultation
+- **Support clinical decision-making** for physicians by providing structured diagnostic frameworks
+- Assist doctors in **systematically gathering patient information** through evidence-based interview protocols
+- Provide **specialty-specific medical knowledge** across 20+ medical fields
+- Help **organize differential diagnoses** and consider relevant conditions based on presenting symptoms
+- Serve as a **clinical decision support tool** for qualified healthcare professionals
 
 ## How It Works
 
@@ -77,14 +78,15 @@ The `agents/` directory contains specialty-specific guidance for:
 
 ## Usage
 
-### For a Friend (Intended Use Case)
+### For Clinical Decision Support (Intended Use Case)
 
-If a friend is experiencing symptoms and preparing to see a doctor:
+This tool is designed to assist physicians in their clinical practice:
 
-1. Use the diagnostic assistant to systematically gather information
-2. Help structure their symptoms and medical history
-3. Ask relevant questions to provide better information to the healthcare provider
-4. Use the information to have more productive conversations with medical professionals
+1. Use the diagnostic assistant to systematically structure patient interviews
+2. Leverage specialty agents for domain-specific diagnostic insights
+3. Generate comprehensive differential diagnoses based on presenting symptoms
+4. Access evidence-based medical knowledge across multiple specialties
+5. Support clinical reasoning with structured medical frameworks
 
 ### Command
 
@@ -94,39 +96,32 @@ If a friend is experiencing symptoms and preparing to see a doctor:
 
 ## What This Plugin CANNOT Do
 
-- Perform physical examinations
-- Order or interpret lab tests
-- Order or interpret imaging studies
-- Prescribe medications or recommend dosages
-- Provide medical treatment recommendations
-- Make definitive diagnoses
-- Replace clinical judgment
-- Be held liable for any medical outcomes
+- Perform physical examinations or obtain vital signs
+- Order or interpret lab tests and imaging studies
+- Replace clinical judgment or medical expertise
+- Make definitive diagnoses or treatment decisions
+- Account for patient-specific contextual factors that you would assess in person
+- Be held liable for any clinical outcomes
 
-## When to Seek Professional Help
+**The treating clinician remains solely responsible for all patient care decisions.**
 
-**SEEK IMMEDIATE MEDICAL ATTENTION** for:
+## Clinical Context and Limitations
 
-- Chest pain or pressure
-- Difficulty breathing
-- Sudden severe headache
-- Severe abdominal pain
-- Sudden weakness or numbness
-- Difficulty speaking
-- Seizures
-- High fever (especially in children or elderly)
-- Unconsciousness
-- Any symptom that feels life-threatening
+**REQUIRE IN-PERSON ASSESSMENT** for:
 
-**SCHEDULE AN APPOINTMENT** for:
+- Any condition requiring physical examination
+- Patients with abnormal vital signs
+- Symptoms requiring diagnostic imaging or laboratory studies
+- Complex multisystem presentations
+- Patients with significant comorbidities
 
-- Persistent symptoms lasting more than a few days
-- Unexplained weight loss or gain
-- New or changing lumps or growths
-- Chronic pain
-- Changes in bodily functions
-- Mental health concerns
-- Preventive care and screenings
+**USE WITH CAUTION** for:
+
+- Pediatric patients (requires specialized knowledge)
+- Geriatric patients (atypical presentations common)
+- Pregnant patients
+- Patients with multiple chronic conditions
+- Patients on complex medication regimens
 
 ## Developer Notes
 
@@ -142,29 +137,29 @@ This plugin follows strict medical safety protocols:
 
 This plugin should only be used:
 
-- As a **preparation tool** before medical consultations
-- For **educational purposes** to learn about medical specialties
-- To help **organize medical information** for healthcare providers
-- By individuals who understand its limitations
+- By **qualified healthcare professionals** as a clinical decision support aid
+- To **supplement (not replace)** clinical judgment and expertise
+- For **organizing diagnostic reasoning** and considering differential diagnoses
+- With understanding that **AI systems have limitations** and can provide incomplete information
 
 This plugin should NOT be used:
 
-- To self-diagnose or self-treat
-- To diagnose or treat others
-- To delay seeking medical care
-- As a substitute for professional medical advice
-- In emergency situations
+- By non-physicians to diagnose or treat themselves or others
+- As a substitute for professional medical training and expertise
+- To make definitive medical decisions without clinical verification
+- In emergency situations requiring immediate clinical intervention
+- As the sole basis for medical treatment decisions
 
 ## Acknowledgments
 
 By using this plugin, you acknowledge that:
 
+- You are a **qualified healthcare professional** (physician, nurse practitioner, or equivalent)
 - You have read and understood all warnings and disclaimers
-- You understand this is not a replacement for professional medical care
-- You will consult healthcare professionals for medical concerns
-- The author assumes no liability for any use of this tool
-- Medical decisions are your sole responsibility
+- This tool serves as **clinical decision support only** and never replaces your professional judgment
+- The author assumes no liability for any clinical outcomes resulting from use of this tool
+- All medical decisions remain your **sole professional responsibility**
 
 ---
 
-**Remember: This tool is designed to help you prepare for and have better conversations with medical professionals. It is not a replacement for them.**
+**Remember: This tool is designed to support clinical decision-making for qualified healthcare professionals. It supplements but never replaces your medical expertise and clinical judgment.**
