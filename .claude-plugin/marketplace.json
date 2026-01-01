@@ -31,6 +31,54 @@
       "skills": [
         "./skills/work-tracking"
       ]
+    },
+    {
+      "name": "medical-diagnosis",
+      "source": "./plugins/medical-diagnosis",
+      "description": "Medical decision support system with specialty-specific guidance for informational purposes only. NOT a replacement for professional medical care.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Mohammed A. I",
+        "url": "https://github.com/mohammed-io"
+      },
+      "homepage": "https://github.com/mohammed-io/agentic-ai-tools",
+      "repository": "https://github.com/mohammed-io/agentic-ai-tools",
+      "license": "MIT",
+      "keywords": [
+        "medical",
+        "diagnosis",
+        "health",
+        "decision-support",
+        "informational"
+      ],
+      "category": "medical",
+      "strict": false,
+      "skills": [
+        "./commands/doctor-diagnose-assistant"
+      ],
+      "agents": [
+        "./agents/cardiology",
+        "./agents/clinical-psychology",
+        "./agents/critical-care",
+        "./agents/dermatology",
+        "./agents/emergency-medicine",
+        "./agents/endocrinology",
+        "./agents/gastroenterology",
+        "./agents/general-medicine",
+        "./agents/geriatrics",
+        "./agents/hematology-oncology",
+        "./agents/infectious-disease",
+        "./agents/nephrology",
+        "./agents/neurology",
+        "./agents/obgyn",
+        "./agents/pediatrics",
+        "./agents/pharmacology",
+        "./agents/psychiatry",
+        "./agents/pulmonology",
+        "./agents/rheumatology",
+        "./agents/surgery",
+        "./agents/urology"
+      ]
     }
   ]
 }
