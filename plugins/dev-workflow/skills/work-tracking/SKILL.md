@@ -58,7 +58,7 @@ If there's an active work file:
   3. Create new work file"
 - Wait for user response before proceeding
 
-If no active work file, proceed to Step 4.
+If no active work file, proceed to Step 3.
 
 ---
 
@@ -97,40 +97,13 @@ Created work file: agent-work/20251230164521_improve_pdf_generation.md
 **Immediately after creation, populate the work file with:**
 
 1. **Context** - What problem is being solved, why it's needed
-2. **Value Proposition** - What the feature achieves, acceptance criteria
-3. **Alternatives Considered** - Other approaches considered and why this approach was chosen
+2. **Value Proposition** - What the feature achieves, business value
+3. **Alternatives Considered** - Other approaches considered with trade-offs
 4. **Todos** - Specific, actionable tasks with `[ ]` checkboxes
-5. **Notes** - Any additional information
+5. **Acceptance Criteria** - How to verify the work is complete
+6. **Notes** - Any additional information
 
-### Example Work File:
-```markdown
-# Improve PDF Generation
-
-## Status: in_progress
-
-## Context
-Current PDF generation doesn't preserve text selectable layers, making it hard for ATS systems to parse. Users report that their resumes aren't being parsed correctly.
-
-## Value Proposition
-- PDFs must have selectable text layers
-- Font embedding must be verified
-- Metadata must be properly set
-- ATS systems should be able to extract all text
-
-## Alternatives considered
-- LaTeX generation: Too complex, requires LaTeX installation
-- Puppeteer: Similar to Playwright but less stable
-- Playwright (chosen): Best text layer support, reliable, well-maintained
-
-## Todos
-- [ ] Update PDF generator to verify text layer
-- [ ] Add font embedding checks
-- [ ] Implement metadata setting
-- [ ] Test with ATS parsers
-- [ ] Update documentation
-
-## Notes
-```
+See `EXAMPLES.md` for complete, real-world examples of properly filled work files.
 
 ---
 
@@ -210,7 +183,7 @@ Completed and moved: agent-work/completed/20251230164521_improve_pdf_generation.
 **Before writing ANY code, verify:**
 - [ ] Checked for active work files
 - [ ] Created work file using `work-create.sh`
-- [ ] Populated Context, Value Proposition, Alternatives, Todos
+- [ ] Populated Context, Value Proposition, Alternatives, Todos, Acceptance Criteria
 - [ ] Work file exists in `agent-work/` directory
 
 While implementing:
@@ -243,63 +216,6 @@ After completing all todos:
 
 ---
 
-## Example Workflow
-
-### User Request: "Add watermark support to PDFs"
-
-#### Step 1: Check for active work
-```bash
-ls agent-work/*.md
-# (no files found)
-```
-
-#### Step 2: Create work file
-```bash
-./agent-work/bin/work-create.sh add_pdf_watermark_support
-# Created work file: agent-work/20251230170000_add_pdf_watermark_support.md
-```
-
-#### Step 3: Populate work file
-Edit the file with context, value proposition, alternatives, todos:
-```markdown
-## Todos
-- [ ] Add watermark option to PDF generator
-- [ ] Implement watermark positioning
-- [ ] Add opacity control
-- [ ] Test with sample PDFs
-- [ ] Update documentation
-```
-
-#### Step 4: Implement first todo
-Write code for watermark option...
-
-**Immediately after:** Update work file
-```
-Edit: agent-work/20251230170000_add_pdf_watermark_support.md
-Old: - [ ] Add watermark option to PDF generator
-New: - [x] Add watermark option to PDF generator
-```
-
-#### Step 5: Implement second todo
-Write code for positioning...
-
-**Immediately after:** Update work file
-```
-Edit: agent-work/20251230170000_add_pdf_watermark_support.md
-Old: - [ ] Implement watermark positioning
-New: - [x] Implement watermark positioning
-```
-
-#### Step 6: Continue until all todos are [x]
-
-#### Step 7: Complete work
-```bash
-./agent-work/bin/work-complete.sh add_pdf_watermark_support
-# Completed and moved: agent-work/completed/20251230170000_add_pdf_watermark_support.md
-```
-
----
-
 ## Summary
 
 **MANDATORY SEQUENCE:**
@@ -311,3 +227,5 @@ New: - [x] Implement watermark positioning
 6. Complete work: `./agent-work/bin/work-complete.sh <name>` (Step 6)
 
 **NO CODE WITHOUT A WORK FILE. NO EXCEPTIONS.**
+
+For complete examples of work files, see `EXAMPLES.md`.

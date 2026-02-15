@@ -31,13 +31,21 @@ Context of this feature
 ## Value Proposition
 What it tries to solve
 
-## Alternatives considered
+## Alternatives considered (with trade-offs)
 Other options
 
 ## Todos
 - [ ] Task 1
+  - [ ] Subtask 1
+- [ ] Task 2
+...
+
+## Acceptance Criteria
+- Criterion 1
+- Criterion 2
 
 ## Notes
+
 EOF
 
 echo "Created work file: $filepath"
