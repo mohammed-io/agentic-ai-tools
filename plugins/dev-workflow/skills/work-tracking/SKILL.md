@@ -1,18 +1,18 @@
 ---
 name: work-tracking
-description: Enforces mandatory work tracking before any file changes. Ensures 100% compliance with work file creation, progressive todo updates, and proper completion. Use this skill for ALL tasks, bug fixes, features, and improvements.
+description: Creates and maintains work tracking files before code changes. Tracks progress with progressive todo updates and archives completed work. Use this skill for features, bug fixes, refactoring, and improvements.
 allowed-tools: [Read, Write, Edit, Bash, Glob]
 
 ## When This Skill Activates
 
-This skill MUST be used for:
+This skill is used for:
 - Any new feature implementation
 - Any bug fix
 - Any refactoring
 - Any improvement or optimization
 - Any code change that will be committed
 
-This skill activates AUTOMATICALLY when the user requests:
+This skill activates when the user requests:
 - "Implement X"
 - "Fix Y"
 - "Add Z feature"
@@ -22,29 +22,38 @@ This skill activates AUTOMATICALLY when the user requests:
 
 ---
 
-## Step 1: Initialize Work Directory (If Needed)
+## Script Location
 
-**Before checking for active work, ensure agent-work directory exists:**
+The scripts live in this skill's `bin/` directory. The agent knows this skill's filesystem location (it loaded SKILL.md from there). Use `bin/` relative to that known path.
+
+Resolve it once at the start of any session using this skill:
 
 ```bash
-if [ ! -d "agent-work" ]; then
-  echo "Initializing work directory..."
-  cp -r .claude/skills/work-tracking/scaffold agent-work
-  echo "Work directory initialized from scaffold"
-fi
+# Resolve the skill's bin directory from the known skill path
+# Replace SKILL_DIR with the actual path where this skill is installed
+SKILL_DIR="<path-to-this-skill>"
+SKILL_BIN="$SKILL_DIR/bin"
 ```
 
-**What this does:**
-- Checks if `agent-work/` directory exists
-- If not, copies the scaffold structure from `.claude/skills/work-tracking/scaffold/`
-- Creates the necessary `bin/` and `completed/` subdirectories
-- Sets up the work tracking system ready for use
+Then use `$SKILL_BIN` to call the scripts:
+
+```bash
+$SKILL_BIN/work-create.sh <task_name>
+$SKILL_BIN/work-complete.sh <task_name>
+```
+
+The scripts accept an optional project directory as the first argument. When omitted, they use `$PWD`:
+
+```bash
+$SKILL_BIN/work-create.sh <project_dir> <task_name>
+$SKILL_BIN/work-complete.sh <project_dir> <task_name>
+```
 
 ---
 
-## Step 2: Check for Active Work
+## Step 1: Check for Active Work
 
-**ALWAYS do this first before creating new work.**
+**Do this before creating new work.**
 
 ```bash
 ls agent-work/*.md 2>/dev/null
@@ -58,41 +67,35 @@ If there's an active work file:
   3. Create new work file"
 - Wait for user response before proceeding
 
-If no active work file, proceed to Step 3.
+If no active work file, proceed to Step 2.
 
 ---
 
-## Step 3: Create Work File (MANDATORY)
+## Step 2: Create Work File
 
-**You MUST run this script BEFORE writing ANY code.**
+**Run this script before writing any code.**
 
 ```bash
-./agent-work/bin/work-create.sh <task_name>
+$SKILL_BIN/work-create.sh <task_name>
 ```
 
+The script will create `agent-work/` and `agent-work/completed/` in the project directory if they don't exist.
+
 ### Task Naming Rules
-Use descriptive, snake_case names:
+Use descriptive, snake_case names containing only letters, numbers, and underscores (minimum 3 characters):
 - ✅ `improve_pdf_generation`
 - ✅ `add_watermark_support`
 - ✅ `fix_date_parsing_bug`
-- ✅ `implement_resume_validator`
-- ❌ `new_feature`
-- ❌ `stuff`
-- ❌ `update`
+- ❌ `new_feature` (too vague)
+- ❌ `fix` (too short)
+- ❌ `fix auth; rm -rf /` (shell metacharacters)
 
-### What the script does:
-- Generates UTC timestamp automatically
-- Creates `agent-work/{timestamp}_{task_name}.md`
-- Populates it with the template
-
-**Example output:**
-```
-Created work file: agent-work/20251230164521_improve_pdf_generation.md
-```
+### Input Safety
+The `task_name` must contain **only** lowercase letters (`a-z`), digits (`0-9`), and underscores (`_`). The script rejects any name containing spaces, slashes, shell metacharacters, or other special characters.
 
 ---
 
-## Step 4: Populate Work File
+## Step 3: Populate Work File
 
 **Immediately after creation, populate the work file with:**
 
@@ -103,68 +106,45 @@ Created work file: agent-work/20251230164521_improve_pdf_generation.md
 5. **Acceptance Criteria** - How to verify the work is complete
 6. **Notes** - Any additional information
 
-See `EXAMPLES.md` for complete, real-world examples of properly filled work files.
+See `EXAMPLES.md` for complete, real-world examples.
 
 ---
 
-## Step 5: Implement Work (Update Todos Progressively)
+## Step 4: Implement Work (Update Todos Progressively)
 
-**⚠️ CRITICAL: Update the work file after EACH todo, not after all todos.**
+**Update the work file after each todo, not after all todos.**
 
-### Wrong Approach (DO NOT DO THIS):
-```
-1. Complete all 5 todos
-2. Update work file once with all 5 checked
-```
-
-### Correct Approach (DO THIS):
+### Recommended approach:
 ```
 1. Complete Todo 1
 2. Update work file: [ ] Task 1 → [x] Task 1
 3. Complete Todo 2
 4. Update work file: [ ] Task 2 → [x] Task 2
-5. And so on...
 ```
 
-### Why This Matters:
-- If AI crashes, progress isn't lost
+### Why this matters:
+- If the process is interrupted, progress isn't lost
 - Maintains accurate progress tracking
 - Allows resumption from any point
 - User can see real-time progress
 
 ### How to Update:
-Use the Edit tool to change `[ ]` to `[x]` for completed todos:
-
-```
-Edit: agent-work/{timestamp}_{task_name}.md
-Old: - [ ] Update PDF generator to verify text layer
-New: - [x] Update PDF generator to verify text layer
-```
+Use the Edit tool to change `[ ]` to `[x]` for completed todos.
 
 ---
 
-## Step 6: Complete Work
+## Step 5: Complete Work
 
 **When ALL todos are checked as [x], complete the work:**
 
 ```bash
-./agent-work/bin/work-complete.sh <name>
-```
-
-### Examples:
-```bash
-./agent-work/bin/work-complete.sh improve_pdf_generation
-./agent-work/bin/work-complete.sh 20251230164521_improve_pdf_generation
+$SKILL_BIN/work-complete.sh <task_name>
 ```
 
 ### What the script does:
+- Validates the task name
 - Updates status to `completed ({completion_timestamp})`
 - Moves file to `agent-work/completed/` directory
-
-**Example output:**
-```
-Completed and moved: agent-work/completed/20251230164521_improve_pdf_generation.md
-```
 
 ---
 
@@ -175,21 +155,16 @@ Completed and moved: agent-work/completed/20251230164521_improve_pdf_generation.
 
 ---
 
-## Enforcement Checklist
+## Workflow Checklist
 
-**First time in project:**
-- [ ] Initialized agent-work directory from scaffold
-
-**Before writing ANY code, verify:**
+**Before writing any code:**
 - [ ] Checked for active work files
 - [ ] Created work file using `work-create.sh`
 - [ ] Populated Context, Value Proposition, Alternatives, Todos, Acceptance Criteria
-- [ ] Work file exists in `agent-work/` directory
 
 While implementing:
-- [ ] Update work file after EACH todo completion
+- [ ] Update work file after each todo completion
 - [ ] Use Edit tool to change `[ ]` to `[x]`
-- [ ] Never batch todo updates
 
 After completing all todos:
 - [ ] Verify ALL todos are marked `[x]`
@@ -197,35 +172,13 @@ After completing all todos:
 
 ---
 
-## Common Mistakes to Avoid
-
-❌ **Starting to code before creating work file**
-✅ Always create work file first
-
-❌ **Updating all todos at once after completing all work**
-✅ Update each todo immediately after completion
-
-❌ **Not checking for active work files**
-✅ Always check first: `ls agent-work/*.md`
-
-❌ **Using vague task names like "update" or "fix"**
-✅ Use descriptive names like "fix_date_parsing_bug"
-
-❌ **Forgetting to complete work file when done**
-✅ Run `work-complete.sh` to move to completed/
-
----
-
 ## Summary
 
-**MANDATORY SEQUENCE:**
-1. **First time only**: Initialize agent-work directory from scaffold (Step 1)
-2. Check for active work: `ls agent-work/*.md` (Step 2)
-3. Create work file: `./agent-work/bin/work-create.sh <task_name>` (Step 3)
-4. Populate work file with context, todos, etc. (Step 4)
-5. Implement EACH todo + update work file immediately after EACH (Step 5)
-6. Complete work: `./agent-work/bin/work-complete.sh <name>` (Step 6)
-
-**NO CODE WITHOUT A WORK FILE. NO EXCEPTIONS.**
+**Recommended sequence:**
+1. Check for active work: `ls agent-work/*.md`
+2. Create work file: `$SKILL_BIN/work-create.sh <task_name>`
+3. Populate work file with context, todos, etc.
+4. Implement each todo + update work file after each
+5. Complete work: `$SKILL_BIN/work-complete.sh <task_name>`
 
 For complete examples of work files, see `EXAMPLES.md`.

@@ -1,14 +1,14 @@
 # Work Tracking Plugin
 
-Enforces mandatory work tracking before any code changes. Ensures 100% compliance with work file creation, progressive todo updates, and proper completion.
+Creates and maintains work tracking files before code changes. Tracks progress with progressive todo updates and archives completed work.
 
 ## What It Does
 
-Claude automatically uses this skill for ALL coding tasks:
+Claude uses this skill for coding tasks:
 
-- **No code without a work file** - Creates tracking document before any implementation
-- **Progressive updates** - Updates work file after EACH todo, not batched
-- **Crash recovery** - Progress is never lost if AI crashes mid-task
+- **Work file before code** - Creates tracking document before any implementation
+- **Progressive updates** - Updates work file after each todo, not batched
+- **Crash recovery** - Progress is preserved if the process is interrupted mid-task
 - **Audit trail** - Complete history of all work in `agent-work/completed/`
 
 ## Usage
@@ -26,52 +26,50 @@ Claude will:
 3. Update the file after each todo completion
 4. Complete and archive the work when done
 
-## Quick Start with AI
-
-**Copy and paste this prompt into Claude Code or Cursor:**
-
-```text
-Help me install the work-tracking skill from: https://github.com/mohammed-io/agentic-ai-tools/tree/main/plugins/dev-workflow/skills/work-tracking
-
-First, use the folder structure in the README.md to fetch the required files.
-
-Important: Make sure the casing of the file name is preserved (i.e., SKILL.md should be SKILL.md)
-
-Then, add the following to AGENTS.md or CLAUDE.md:
-
----
-
-## Work Tracking System
-
-**⚠️ CRITICAL: WORK TRACKING IS NON-NEGOTIABLE ⚠️**
-
-**⚠️ BEFORE STARTING ANY WORK, YOU MUST:**
-1. Invoke: `Skill(dev-workflow:work-tracking)`
-2. Follow the skill's procedures to create a work file
-3. Only proceed with coding AFTER work file is created
-
-**NO EXCEPTIONS - this applies to ALL code changes: features, bug fixes, refactoring, etc.**
-
----
-```
-
----
-
-**Or install manually below:**
-
 ## Installation
 
-1. Copy to your project's `.claude/skills/` directory:
+Copy the skill to your Claude skills directory:
 
 ```bash
-mkdir -p .claude/skills/work-tracking
-cp SKILL.md .claude/skills/work-tracking/
-cp -r scaffold .claude/skills/work-tracking/
+# Install to your preferred skills directory, e.g.:
+SKILL_DIR=~/.claude/skills/work-tracking
+# or: SKILL_DIR=~/.pi/agent/skills/work-tracking
+# or: SKILL_DIR=~/.agents/skills/work-tracking
+mkdir -p "$SKILL_DIR"
+cp SKILL.md "$SKILL_DIR/"
+cp -r bin "$SKILL_DIR/"
+cp EXAMPLES.md "$SKILL_DIR/"
 ```
 
-2. Add the Work Tracking System section (shown in Quick Start above) to your `AGENTS.md` or `CLAUDE.md` file.
+Then add the following to your `AGENTS.md` or `CLAUDE.md`:
+
+```markdown
+## Work Tracking System
+
+Before starting any work, invoke the work-tracking skill and follow its procedures to create a work file. Only proceed with coding after the work file is created. This applies to features, bug fixes, refactoring, and all other code changes.
+```
 
 ## How It Works
+
+### Scripts
+
+The skill includes two scripts in `bin/`:
+
+| Script | Purpose |
+|---|---|
+| `bin/work-create.sh` | Creates `agent-work/` in the project and generates a work file |
+| `bin/work-complete.sh` | Marks a work file complete and moves it to `agent-work/completed/` |
+
+Both scripts accept an optional `<project_dir>` as the first argument. When omitted, they use `$PWD`.
+
+```bash
+# From within a project (uses $PWD)
+$SKILL_DIR/bin/work-create.sh improve_pdf_generation
+$SKILL_DIR/bin/work-complete.sh improve_pdf_generation
+
+# Targeting a specific project
+$SKILL_DIR/bin/work-create.sh ~/my-project improve_pdf_generation
+```
 
 ### Work File Template
 
@@ -84,47 +82,41 @@ Each work file includes:
 
 ### Progressive Updates
 
-The key insight: update after **each** todo, not all at once. This means if the AI crashes, you can resume exactly where you left off.
+The key insight: update after **each** todo, not all at once. This means if the process is interrupted, you can resume exactly where you left off.
 
 ### Completion
 
-When all todos are checked, the work file is automatically moved to `agent-work/completed/` with a completion timestamp.
+When all todos are checked, the work file is moved to `agent-work/completed/` with a completion timestamp.
+
+### Security
+
+Task names are validated to contain only `[a-z0-9_]` (minimum 3 characters). Shell metacharacters, path traversal sequences, and command substitution patterns are rejected.
 
 ## Structure
 
-### Plugin Structure
-
 ```
 work-tracking/
-├── README.md             # This file - documentation
-├── SKILL.md              # Claude skill definition
-└── scaffold/             # Template structure to copy
-    ├── bin/
-    │   ├── work-create.sh    # Creates new work files
-    │   └── work-complete.sh  # Completes and archives
-    └── completed/            # Archive for finished work
+├── README.md          # This file
+├── SKILL.md           # Claude skill definition
+├── EXAMPLES.md        # Real-world work file examples
+└── bin/
+    ├── work-create.sh    # Creates new work files
+    └── work-complete.sh  # Completes and archives
 ```
 
-### Work Directory Structure
-
-After initialization, the `agent-work/` directory is created in your project:
+After running `work-create.sh`, the project gets:
 
 ```
-agent-work/
-├── bin/
-│   ├── work-create.sh    # Creates new work files
-│   └── work-complete.sh  # Completes and archives
-├── completed/            # Archive of finished work
-└── {timestamp}_{task}.md # Active work files
+<project>/
+├── agent-work/
+│   ├── completed/            # Archive of finished work
+│   └── {timestamp}_{task}.md # Active work files
+└── ...
 ```
 
 ## For AI Agents
 
-See `SKILL.md` for complete implementation details including:
-- Step-by-step procedures
-- Enforcement checklist
-- Common mistakes to avoid
-- Example workflow
+See `SKILL.md` for complete implementation details including step-by-step procedures, the workflow checklist, and task naming rules.
 
 ## Authors
 
