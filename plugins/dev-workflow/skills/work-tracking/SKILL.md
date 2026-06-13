@@ -5,6 +5,8 @@ allowed-tools: [Read, Write, Edit, Bash, Glob]
 
 ## When This Skill Activates
 
+Use obra-superpowers planning skill whenever possible.
+
 This skill is used for:
 - Any new feature implementation
 - Any bug fix
